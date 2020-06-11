@@ -1,9 +1,10 @@
 from room import Room
 from item import Item
+from lightSource import LightSource
 
 # Declare all the Items
 items = {
-    "torch": Item(
+    "torch": LightSource(
         "Torch",
         "A rustic wooden handle wrapped in silk.",
         "torch"
