@@ -2,6 +2,7 @@
 # currently.
 from room import Room
 from inventory import Inventory
+from lightSource import LightSource
 
 
 class Player:
@@ -10,10 +11,20 @@ class Player:
         self.inventory: Inventory = Inventory(list(items))
 
     def __str__(self):
-        return str(self.current_room)
+        output = "It's pitch black!"
+
+        if self.can_see():
+            output = str(self.current_room)
+
+        return output
 
     def __repr__(self):
         return f"Player: [current_room={self.current_room}]"
+
+    def can_see(self) -> bool:
+        return (self.current_room.is_lit
+                or self.inventory.has_type(LightSource)
+                or self.current_room.has_type(LightSource))
 
     def move(self, *command):
         direction = command[0]

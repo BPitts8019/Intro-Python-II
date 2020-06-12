@@ -3,12 +3,14 @@
 from textwrap import fill
 from inventory import Inventory
 from item import Item
+from lightSource import LightSource
 
 
 class Room:
-    def __init__(self, name: str, description: str, *items):
+    def __init__(self, name: str, description: str, is_lit: bool = True, *items):
         self.name = name
         self.description = description
+        self.is_lit = is_lit
         self.n_to = None
         self.e_to = None
         self.s_to = None
@@ -26,6 +28,9 @@ class Room:
 
     def __repr__(self):
         return f"Room: [name={self.name}, description={self.description}, items_list={self.items_list}]"
+
+    def has_type(self, item_type: type) -> bool:
+        return self.items_list.has_type(item_type)
 
     def add_item(self, item: Item):
         self.items_list.add_item(item)
