@@ -54,6 +54,19 @@ class Player:
         else:
             print("You aren't carrying anything")
 
+    def look_at(self, *command):
+        item_name = command[1]
+
+        if not(item_name):
+            print("Looking at nothing is pretty hard to do with your eyes open!")
+            return
+
+        item = self.inventory.find_by_name(item_name)
+        if item:
+            print(item.describe())
+        else:
+            print(f"You don't have a {item_name}!")
+
     def take(self, *command):
         item_name = command[1]
 

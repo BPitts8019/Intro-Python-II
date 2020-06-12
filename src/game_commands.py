@@ -19,4 +19,6 @@ commands = {
     "south": Player.move,
     "w": Player.move,
     "west": Player.move,
+    "l": Player.look_at,
+    "look": Player.look_at
 }

@@ -28,6 +28,9 @@ class Item:
 
         return True
 
+    def describe(self):
+        return f"{self.name}: {self.description}"
+
     def on_take(self):
         print(f"You pickup the {self.name}")
 
