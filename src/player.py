@@ -61,6 +61,10 @@ class Player:
             print("Umm! You picked up nothing... Congratulations!")
             return
 
+        if not(self.can_see()):
+            print(f"Good luck finding that {item_name} in the dark!")
+            return
+
         item_from_room = self.current_room.remove_item(item_name)
         if item_from_room:
             self.inventory.add_item(item_from_room)
