@@ -42,7 +42,10 @@ class Player:
 
         new_room = move_to[direction]
         if new_room:
-            print(direction)
+            print(f"{direction}")
+            if self.current_room.is_detailed_view:
+                self.current_room.hide_detail()
+
             self.current_room = new_room
         else:
             print("Sorry, you can't go in that direction")
@@ -55,10 +58,11 @@ class Player:
             print("You aren't carrying anything")
 
     def look_at(self, *command):
-        item_name = command[1]
+        cmd, item_name = command
 
         if not(item_name):
-            print("Looking at nothing is pretty hard to do with your eyes open!")
+            print(f"{cmd} {item_name}")
+            self.current_room.show_detail()
             return
 
         item = self.inventory.find_by_name(item_name)

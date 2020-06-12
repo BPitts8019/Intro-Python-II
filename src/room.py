@@ -16,18 +16,30 @@ class Room:
         self.s_to = None
         self.w_to = None
         self.items_list: Inventory = Inventory(list(items))
+        self.is_detailed_view = False
+        self.is_show_detail = True
 
     def __str__(self):
-        output = f"{self.name}\n{fill(self.description)}"
+        output = self.name
 
-        if len(self.items_list) > 0:
-            output += f"\n\nItems in view:\n"
-            output += str(self.items_list)
+        if self.is_show_detail:
+            output += f"\n{fill(self.description)}"
 
+            if len(self.items_list) > 0:
+                output += f"\n\nItems in view:\n"
+                output += str(self.items_list)
+
+        self.is_detailed_view = self.is_show_detail
         return output
 
     def __repr__(self):
         return f"Room: [name={self.name}, description={self.description}, items_list={self.items_list}]"
+
+    def show_detail(self):
+        self.is_show_detail = True
+
+    def hide_detail(self):
+        self.is_show_detail = False
 
     def has_type(self, item_type: type) -> bool:
         return self.items_list.has_type(item_type)
